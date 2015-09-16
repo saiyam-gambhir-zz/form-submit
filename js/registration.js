@@ -1,6 +1,5 @@
-var RegistrationForm = function(form, submitButton) {
+var RegistrationForm = function(form) {
   this.form         = form;
-  this.submitButton = submitButton;
   this.inpuTypeText = new InpuTypeText(document.getElementsByClassName('text-field'));
   this.textArea     = new TextArea(document.getElementById('text-area'));
   this.checkBox     = new CheckBox(document.getElementById('check'));
@@ -23,6 +22,6 @@ RegistrationForm.prototype.bind = function() {
 }
 
 window.onload = function() {
-  var registrationForm = new RegistrationForm(document.getElementById('reg-form'),document.getElementById('btn-submit'));
+  var registrationForm = new RegistrationForm(document.getElementById('reg-form'));
   registrationForm.bind();
 }
