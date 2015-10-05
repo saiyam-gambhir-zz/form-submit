@@ -1,53 +1,20 @@
-var FormFields = function() {
-}
+var FormField = function() {
+};
 
-FormFields.prototype.showMessage = function(message) {
+FormField.prototype.showMessage = function(message) {
   alert(message);
-}
+};
 
-var InpuTypeText = function(inputField) {
-  this.inputField = inputField;
-}
-
-var TextArea = function(textField) {
-  this.textField = textField;
-}
-
-var CheckBox = function(checkBox) {
-  this.checkBox = checkBox;
-}
-
-InpuTypeText.prototype = new FormFields();
-TextArea.prototype     = new FormFields();
-
-InpuTypeText.prototype.validate = function() {
-  var flag = true;
-  for(index = 0; index < this.inputField.length; index++) {
-    if(this.inputField[index].value.trim().length <= 0) {
-      this.showMessage(this.inputField[index].getAttribute("data-name") + " can't be empty.");
-      flag = false;
+FormField.prototype.validate = function() {
+  var isValid = true;
+  for(var i = 0; i < this.field.length; i++) {
+    var fieldValidations = this.field[i].getAttribute('data-validation').split(' ');  
+    for(var j = 0, length = fieldValidations.length; j < length; j++) {
+      if(!Validations.validate(this.field[i], fieldValidations[j])) {
+        isValid = false;
+        this.showMessage(Validations.getErrorMessage(this.field[i], fieldValidations[j]));
+      }
     }
   }
-  return flag;
-}
-
-TextArea.prototype.validate = function() {
-  if(this.textField.value.trim().length <= 49) {
-    this.showMessage('Please Enter Atleast 50 Characters in comments');
-    return false;
-  }
-  return true;
-}
-
-CheckBox.prototype.confirmation = function() {
-  this.checkBox.onchange = function() {
-    if(this.checked == true) {
-     if(confirm("Are You Sure you want to recieve notification ?")) {
-      this.checked = true;
-     }
-     else {
-      this.checked = false;
-     }
-    }
-  }
-}
+  return isValid;
+};

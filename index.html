@@ -6,13 +6,13 @@
   </head>
   <body>
     <div class="container">
-      <h2 class="font-big align-center">Form Submit Exercise</h2>
-      <form id="reg-form">
+
+      <form id="reg-form" class="form" novalidate>
         <h3 class="align-center">Registration Form</h3>
 
         <div class="form-group">
           <label>Login Id</label>
-          <input type="text" class="text-field" data-name="Login Id">
+          <input type="text" class="text" data-name="Login Id" data-validation="presence-required">
         </div>
 
         <div class="form-group">
@@ -22,7 +22,7 @@
 
         <div class="form-group">
           <label>Name</label>
-          <input type="text" class="text-field" data-name="Name">
+          <input type="text" class="text" data-name="Name" data-validation="presence-required">
         </div>
 
         <div class="form-group">
@@ -35,24 +35,29 @@
 
         <div class="form-group">
           <label>Home Page</label>
-          <input type="text">
+          <input type="url">
         </div>
 
         <div class="form-group">
           <label>Comments</label>
-          <textarea id="text-area"></textarea>
+          <textarea class="text-area" data-name="Comments" data-minimum-length="50" data-validation="minimum-length-required"></textarea>
         </div>
 
         <div class="form-group">
-          <input type="checkbox" id="check">
-          Receive Notification of Comments.
+          <label>
+            <input type="checkbox" class="confirm"> Receive Notification of Comments.
+          </label>
         </div>
 
         <button id="btn-submit" type="submit">Submit</button>
         
       </form>
+
     </div>
-    <script type="text/javascript" src="js/registration.js"></script>
-    <script type="text/javascript" src="js/formfields.js"></script>
+
+    <script type="text/javascript" src="js/validationForm.js"></script>
+    <script type="text/javascript" src="js/validations.js"></script>
+    <script type="text/javascript" src="js/formFields.js"></script>
+    <script type="text/javascript" src="js/fields.js"></script>
   </body>
 </html>
